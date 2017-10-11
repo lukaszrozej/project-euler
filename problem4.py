@@ -76,3 +76,35 @@ elapsed_time = time.process_time() - t
 print('time: ', elapsed_time)
 
 print( largest_palindrome_product(3) )
+
+# 4. Convert to string only once
+
+def largest_palindrome_product(n_digits):
+	start = 10**(n_digits-1)
+	stop = start*10
+	max = 1
+	for a in range(start, stop):
+		if a % 10 == 0:
+			continue
+		if a % 5 == 0:
+			step = 2
+		else:
+			step = 1
+		start_b = max // a + 1
+		for b in range(start_b, stop, step):
+			if b % 10 == 0:
+				continue
+			p = a*b
+			s = str(p)
+			if s == s[::-1]:
+				if p > max:
+					max = p
+	return max
+
+t = time.process_time()
+largest_palindrome_product(3)
+elapsed_time = time.process_time() - t
+print('time: ', elapsed_time)
+
+print( largest_palindrome_product(3) )
+

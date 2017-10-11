@@ -23,3 +23,14 @@ elapsed_time = time.process_time() - t
 print('time: ', elapsed_time)
 
 print( lcm_from_1_to(20) )
+
+# 2. with sympy
+
+from sympy.core.numbers import ilcm
+
+t = time.process_time()
+ilcm(*range(2,20))
+elapsed_time = time.process_time() - t
+print('time: ', elapsed_time)
+
+print( ilcm(*range(2,20)) )

@@ -32,7 +32,7 @@ print('time: ', elapsed_time)
 
 print( nth_prime(10001)	)
 
-# 2. 
+# 2. Skip multiples of 2 in is_prime nad skip multiples of 2 and 3 in nth_prime
 
 def is_prime(n):
 	if n == 1:
@@ -67,3 +67,15 @@ elapsed_time = time.process_time() - t
 print('time: ', elapsed_time)
 
 print( nth_prime(10001)	)
+
+# 3. With pyprimesieve
+
+import pyprimesieve
+
+t = time.process_time()
+pyprimesieve.primes_nth(10001)
+elapsed_time = time.process_time() - t
+print('time: ', elapsed_time)
+
+print( pyprimesieve.primes_nth(10001) )
+

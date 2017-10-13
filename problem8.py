@@ -25,8 +25,6 @@ import time
 
 # Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
 
-# 1. My solution
-
 s = '73167176531330624919225119674426574742355349194934' + \
 	'96983520312774506326239578318016984801869478851843' + \
 	'85861560789112949495459501737958331952853208805511' + \
@@ -49,6 +47,8 @@ s = '73167176531330624919225119674426574742355349194934' + \
 	'71636269561882670428252483600823257530420752963450'
 
 l = [ int(n) for n in list(s) ]
+
+# 1. My solution, with optimization: jumping over zeroes
 
 def greatest_product(k, l):
 	'''
@@ -74,6 +74,37 @@ def greatest_product(k, l):
 			product = product * number // l[left]
 			left += 1
 			right += 1
+		if product > max:
+			max = product
+	return max
+
+# l = [1,2,0,3,1,4,1,0,5,1,8,1,0,0]
+
+print( greatest_product(13, l) )
+
+# 2. With iterators, just to understand how they work and the code seems much cleener
+
+import copy
+
+def greatest_product(k, l):
+	'''
+	finds the k adjacent numbers the integer list l that have the greatest product
+	'''
+	left = iter(l)
+	right = iter(l)
+	counter = 0
+	max = 0
+	product = 1
+	for number in right:
+		if number == 0:
+			left = copy.copy(right)
+			counter = 0
+			product = 1
+		elif counter < k:
+			product *= number
+			counter += 1
+		else:
+			product = product * number // next(left)
 		if product > max:
 			max = product
 	return max

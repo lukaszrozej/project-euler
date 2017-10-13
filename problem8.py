@@ -48,7 +48,7 @@ s = '73167176531330624919225119674426574742355349194934' + \
 
 l = [ int(n) for n in list(s) ]
 
-# 1. My solution, with optimization: jumping over zeroes
+# 1. My solution, with moving window and jumping over zeroes
 
 def greatest_product(k, l):
 	'''
@@ -78,11 +78,14 @@ def greatest_product(k, l):
 			max = product
 	return max
 
-# l = [1,2,0,3,1,4,1,0,5,1,8,1,0,0]
+t = time.process_time()
+print( greatest_product(13, l) )
+elapsed_time = time.process_time() - t
+print('time: ', elapsed_time)
 
 print( greatest_product(13, l) )
 
-# 2. With iterators, just to understand how they work and the code seems much cleener
+# 2. Same idea as above, with iterators, just to understand how they work and the code seems much cleener
 
 import copy
 
@@ -109,6 +112,9 @@ def greatest_product(k, l):
 			max = product
 	return max
 
-# l = [1,2,0,3,1,4,1,0,5,1,8,1,0,0]
+t = time.process_time()
+print( greatest_product(13, l) )
+elapsed_time = time.process_time() - t
+print('time: ', elapsed_time)
 
 print( greatest_product(13, l) )

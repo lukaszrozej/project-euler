@@ -39,22 +39,33 @@ def isqrt3(n):
     return x
 
 if __name__ == "__main__":
-    # test wich version is fastest
-    t = time.process_time()
+    # test if they are correct:
     for n in range(1, 10000):
         if math.floor(math.sqrt(n)) != isqrt1(n):
-            print(n)
-    elapsed_time = time.process_time() - t
-    print('time: ', elapsed_time)
+            print('isqrt1 failed for: {}'.format(n))
+        if math.floor(math.sqrt(n)) != isqrt1(n):
+            print('isqrt1 failed for: {}'.format(n))
+        if math.floor(math.sqrt(n)) != isqrt1(n):
+            print('isqrt1 failed for: {}'.format(n))
+    # test which one is fastest
+    n = 100000
     t = time.process_time()
-    for n in range(1, 10000):
-        if math.floor(math.sqrt(n)) != isqrt2(n):
-            print(n)
+    for n in range(1, n):
+        isqrt1(n)
     elapsed_time = time.process_time() - t
-    print('time: ', elapsed_time)
+    print('isqrt1 time: ', elapsed_time)
     t = time.process_time()
-    for n in range(1, 10):
-        if math.floor(math.sqrt(n)) != isqrt3(n):
-            print(n)
+    for n in range(1, n):
+        isqrt2(n)
     elapsed_time = time.process_time() - t
-    print('time: ', elapsed_time)
+    print('isqrt2 time: ', elapsed_time)
+    t = time.process_time()
+    for n in range(1, n):
+        isqrt3(n)
+    elapsed_time = time.process_time() - t
+    print('isqrt3 time: ', elapsed_time)
+    t = time.process_time()
+    for n in range(1, n):
+        math.floor(math.sqrt(n))
+    elapsed_time = time.process_time() - t
+    print('  math time: ', elapsed_time)

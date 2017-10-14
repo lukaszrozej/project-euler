@@ -90,9 +90,7 @@ print( greatest_product(13, l) )
 import copy
 
 def greatest_product(k, l):
-	'''
-	finds the k adjacent numbers the integer list l that have the greatest product
-	'''
+	# finds the greatest product of k consecutive numbers in the iterable l
 	left = iter(l)
 	right = iter(l)
 	counter = 0

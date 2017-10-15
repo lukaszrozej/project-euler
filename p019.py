@@ -21,3 +21,24 @@ for year in range(1901, 2001):
             sundays_count += 1
 
 print( sundays_count )
+
+# 2. Using nothin, just looping over days
+
+sundays_count = 0
+weekday = 0
+for year in range(1900, 2001):
+    for month in range(1, 13):
+        if month == 2:
+            days_in_month = 28
+            if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0):
+                days_in_month += 1
+        elif month in (4, 6, 9, 11):
+            days_in_month = 30
+        else:
+            days_in_month = 31
+        for day in range(1, days_in_month + 1):
+            if year >= 1901 and day == 1 and weekday == 6:
+                sundays_count += 1
+            weekday = (weekday + 1) % 7
+
+print( sundays_count )

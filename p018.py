@@ -36,7 +36,7 @@ text = \
 def max_path_in_triangle(text):
 	# text to triangle
 	triangle = []
-	for line in text.split('\n'):
+	for line in text.strip().split('\n'):
 		row_of_str = line.split(' ')
 		row_of_int = list( map(int, row_of_str) )
 		triangle.append(row_of_int)

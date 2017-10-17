@@ -29,3 +29,13 @@ while len(str(current)) < 1000:
 	n += 1
 
 print( n )
+
+# 2. Use fomrula for nth Fibonacci number
+#  It might not work for numbers other then 1000
+#  due to  finite precision
+
+from math import log10, sqrt
+
+n = int( (999 + log10(5)/2) / log10(1.61803398875) ) + 1 
+
+print( n )

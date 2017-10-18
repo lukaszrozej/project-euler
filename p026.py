@@ -30,7 +30,47 @@ def period_length(d):
 	else:
 		return len(remainders) - remainders.index(r)
 
-for d in range(1,1000):
-	print(d, period_length(d) )
+print( max( (period_length(d), d) for d in range(1, 1000) ) )
 
-# print( max( (period_length(d), d) for d in range(1, 1000) ) )
+# 2. Using th fact that
+# 	If
+#    k = decimal places of 1/d before period starts
+# 	 n = k + length of the period
+# 	then:
+# 	 d | 10^n - 10^k
+#  Just to check how much slower it will be
+
+from pyprimesieve import factorize
+
+def period_length1(d):
+	if not [prime for (prime, power) in factorize(d) if prime != 2 and prime != 5]:
+		return 0
+	n = 1
+	while True:
+		for k in range(n-1, -1, -1):
+			if (10**n - 10**k) % d == 0:
+				return n-k
+		n += 1
+
+print( max( (period_length1(d), d) for d in range(1, 1000) ) )
+
+# for d in range(1, 1000):
+# 	a = period_length(d)
+# 	b = period_length1(d)
+# 	if a != b:
+# 		print( d,  a, b )
+# correct
+
+import time
+
+t = time.process_time()
+max( (period_length(d), d) for d in range(1, 1000) )
+elapsed_time = time.process_time() - t
+print('time: ', elapsed_time) #  0.33583856099999565
+
+t = time.process_time()
+max( (period_length1(d), d) for d in range(1, 1000) )
+elapsed_time = time.process_time() - t
+print('time: ', elapsed_time) # 47.991359442
+
+	

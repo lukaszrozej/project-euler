@@ -21,14 +21,16 @@
 
 # 1. Just lopping until we get 1000 digits
 
-previous = 1
-current = 1
-n = 2
-while len(str(current)) < 1000:
-	current, previous = current + previous, current
-	n += 1
+def first_fib_num_digs(bound):
+	previous = 1
+	current = 1
+	n = 2
+	while len(str(current)) <= bound:
+		current, previous = current + previous, current
+		n += 1
+	return n
 
-print( n )
+print( first_fib_num_digs(999) )
 
 # 2. Use fomrula for nth Fibonacci number
 #  It might not work for numbers other then 1000
@@ -36,6 +38,12 @@ print( n )
 
 from math import log10, sqrt
 
-n = int( (999 + log10(5)/2) / log10(1.61803398875) ) + 1 
+def first_fib_num_digs1(bound):
+	return int( (bound + log10(5)/2) / log10(1.61803398875) ) + 1 
 
-print( n )
+
+for n in range(1,1000):
+	a = first_fib_num_digs1(n)
+	b = first_fib_num_digs(n)
+	if a != b:
+		print(n, b, a)

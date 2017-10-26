@@ -1,7 +1,5 @@
 # https://projecteuler.net/problem=53
 
-import numpy as np
-
 size = 101
 treshold = 1000000
 c = [0] * size

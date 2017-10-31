@@ -18,6 +18,13 @@ for n in range(1,10):
 def comb(n,k):
 	return int(combinations[n,k])
 
+# k - how many distinct digits in a number
+# n - how many digits in a number
+# sum_over_j - how many n-digit numbers with k distinct digits are there
+# (10**N - (10-k)**N)  or  (10**N - sub -1)
+# 	- how many numbers are friends above mentioned n-digit numbers
+
+# 0 not among k digits
 sum_over_k = 0
 for k in range(1,10):
 	sum_over_n = 0
@@ -30,7 +37,7 @@ for k in range(1,10):
 				sum_over_j += -comb(k, j) * (k-j)**n
 		sum_over_n += sum_over_j
 	sum_over_k += comb(9, k) * sum_over_n * (10**N - (10-k)**N)
-
+# 0 among k digits
 for k in range(2,11):
 	sum_over_n = 0
 	for n in range(1, N+1):
@@ -49,6 +56,7 @@ for k in range(2,11):
 		sub = (10-k) * ((10-k)**N - 1) // (10 - k - 1)
 	sum_over_k += comb(9, k-1) * sum_over_n * (10**N - sub -1)
 
+# substract pairs x,x, don't count each pair twice
 result = ((sum_over_k - 10**N + 1) // 2)
 result %= 1000267129
 

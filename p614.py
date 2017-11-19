@@ -20,6 +20,7 @@ def p_d(n, k):
 	return 	p_d(n-k, k-1) + p_d(n-k, k) % 1000000007
 
 # number of ways to partition n into distinct summands
+@lru_cache(maxsize=None)
 def pp_d(n):
 	return sum( p_d(n, k) for k in range(0, ceil(sqrt(1 + 8*n)) // 2 + 1) ) % 1000000007
 
@@ -44,6 +45,7 @@ def p_do(n, k):
 	return 	p_do(n+1-2*k, k-1) + p_do(n-2*k, k) % 1000000007
 
 # number of ways to partition n into distinct summands
+@lru_cache(maxsize=None)
 def pp_do(n):
 	return sum( p_do(n, k)	for k in range(0, ceil(sqrt(1 + 8*n)) // 2 + 1) ) % 1000000007
 

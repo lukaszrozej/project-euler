@@ -1,15 +1,15 @@
 -- https://projecteuler.net/problem=3
 
-n `fullyDvideBy` p
-  | n `mod` p == 0 = (n `div` p) `fullyDvideBy` p
+n `withoutPrimeFactor` p
+  | n `mod` p == 0 = (n `div` p) `withoutPrimeFactor` p
   | otherwise      = n
 
-primeFactors :: Int -> Int -> [Int]
-primeFactors p n
+primeFactorsStartingFrom :: Int -> Int -> [Int]
+primeFactorsStartingFrom p n
   | p > n          = []
-  | n `mod` p == 0 = p : primeFactors (p+1) (n `fullyDvideBy` p)
-  | otherwise      = primeFactors (p+1) (n `fullyDvideBy` p)
+  | n `mod` p == 0 = p : primeFactorsStartingFrom (p+1) (n `withoutPrimeFactor` p)
+  | otherwise      =     primeFactorsStartingFrom (p+1) (n `withoutPrimeFactor` p)
 
-ans = maximum $ primeFactors 2 600851475143
+ans = maximum $ primeFactorsStartingFrom 2 600851475143
 
 
